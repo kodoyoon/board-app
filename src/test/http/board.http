@@ -1,0 +1,30 @@
+POST http://localhost:8080/api/v1/posts
+Content-Type: application/json
+
+{
+  "title": "게시글 제목",
+  "author": "작성자명",
+  "password": "bin1234",
+  "content": "게시글 내용"
+}
+###
+GET http://localhost:8080/api/v1/posts/1
+###
+GET http://localhost:8080/api/v1/posts
+###
+
+PATCH http://localhost:8080/api/v1/posts/3
+Content-Type: application/json
+
+{
+  "title": "게시글 제목 수정",
+  "author": "작성자명 수정",
+  "content": "게시글 내용 수정",
+  "password": "bin1234"
+}
+###
+
+DELETE http://localhost:8080/api/v1/posts/2
+Content-Type: application/json
+password: bin1234
+###
