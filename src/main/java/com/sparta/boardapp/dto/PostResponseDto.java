@@ -4,7 +4,7 @@ import com.sparta.boardapp.entity.PostEntity;
 
 import java.time.LocalDateTime;
 
-public record PostResponseDto(
+public record PostResponseDto( //record 는 getter 를 사용하지 않아요.
      Long id,
      String title,
      String author,

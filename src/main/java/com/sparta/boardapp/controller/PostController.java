@@ -29,7 +29,7 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
 
-    @GetMapping("/{postId}")
+    @GetMapping("/{postId}") //전체조회
     public ResponseEntity<PostResponseDto> getPost(
             @PathVariable Long postId
     ) {
@@ -37,13 +37,13 @@ public class PostController {
         return ResponseEntity.ok(responseDto);
     }
 
-    @GetMapping
+    @GetMapping //목록조회
     public ResponseEntity<List<PostResponseDto>> getPosts() {
         List<PostResponseDto> responseDto = postService.getPosts();
         return ResponseEntity.ok(responseDto);
     }
 
-    @PatchMapping("/{postId}")
+    @PatchMapping("/{postId}") //선택한 게시글 수정
     public ResponseEntity<PostResponseDto> updatePost(
             @PathVariable Long postId,
             @RequestBody PostUpdateRequestDto requestDto
@@ -55,7 +55,7 @@ public class PostController {
     @DeleteMapping("/{postId}")
     public ResponseEntity<Void> deletePost(
             @PathVariable Long postId,
-            @RequestHeader("password") String password
+            @RequestHeader("password") String password //requestbody 를 지향하는 편
     ) {
         postService.deletePost(postId, password);
         return ResponseEntity.noContent().build();
