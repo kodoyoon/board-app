@@ -16,7 +16,7 @@ public class ErrorResponseDto{
     @JsonPropertyOrder({"status", "message"})
     record Error(
             int status,
-            @JsonProperty("message")
+            @JsonProperty("message") //반환할때는 메시지로 하고 싶다.
             String msg
     ){}
 }

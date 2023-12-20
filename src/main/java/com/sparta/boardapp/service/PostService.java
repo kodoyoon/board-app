@@ -24,7 +24,7 @@ public class PostService {
         // Dto -> Entity
         PostEntity postEntity = new PostEntity(requestDto);
         PostEntity savePost = postJpaRepository.save(postEntity);
-        return new PostResponseDto(savePost);
+        return new PostResponseDto(savePost); //response 데이터를 달라는거
     }
 
     public PostResponseDto getPost(Long postId) {
@@ -34,8 +34,8 @@ public class PostService {
 
     public List<PostResponseDto> getPosts() {
         return postJpaRepository.findAllByOrderByCreatedAtDesc().stream()
-                .map(PostResponseDto::new)
-                .collect(Collectors.toList());
+                .map(PostResponseDto::new) // ::은 postreponsedto  에 있는 생성자를 호출한다라는 의미
+                .collect(Collectors.toList()); // list 타입으로 바꿔주는
     }
 
     @Transactional
@@ -46,13 +46,13 @@ public class PostService {
         return new PostResponseDto(postEntity);
     }
 
-    public void deletePost(Long postId, String password) {
+    public void deletePost(Long postId, String password) { //public ResponseEntity<?>
         PostEntity postEntity = getPostEntity(postId);
         verifyPassword(postEntity, password);
-        postJpaRepository.delete(postEntity);
+        postJpaRepository.delete(postEntity); //reurn ResponseEntity.noContent().build();
     }
 
-    private PostEntity getPostEntity(Long postId) {
+    private PostEntity getPostEntity(Long postId) { //공통되니까
         return postJpaRepository.findById(postId)
                 .orElseThrow(() -> new PostNotFoundException("해당 게시글을 찾을 수 없습니다."));
     }

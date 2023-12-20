@@ -19,10 +19,10 @@ import java.util.List;
 @RequestMapping("/api/v1/posts")
 public class PostController {
 
-    private final PostService postService;
+    private final PostService postService; //비즈니스 로직을실행하는 객체
 
     @PostMapping
-    public ResponseEntity<PostResponseDto> addPost(
+    public ResponseEntity<PostResponseDto> addPost( //잘 저장됐는지 반환해주는 값
             @RequestBody PostAddRequestDto requestDto
     ) {
         PostResponseDto responseDto = postService.addPost(requestDto);
@@ -37,7 +37,7 @@ public class PostController {
         return ResponseEntity.ok(responseDto);
     }
 
-    @GetMapping //목록조회
+    @GetMapping //목록조회(여러개 나올거니까)
     public ResponseEntity<List<PostResponseDto>> getPosts() {
         List<PostResponseDto> responseDto = postService.getPosts();
         return ResponseEntity.ok(responseDto);
